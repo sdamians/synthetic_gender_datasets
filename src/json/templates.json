@@ -1,0 +1,54 @@
+{
+    "subject_pron": {
+        "ans" : {"M": "he", "F":"she"},
+        "templates": [
+            "[freq] [name] [verb] [comp]"
+        ],
+        "freq": [
+            "The other day",
+            "As far as I know,",
+            "The moment",
+            "When",
+            "Last time",
+            "Earlier today,",
+            "Not long ago,",
+            "A few days back,",
+            "Back then,",
+            "From that day on,",
+            "In the past,",
+            "At that moment,",
+            "From what I remember,",
+            "If I'm not mistaken,",
+            "As I recall,",
+            "From what I've heard,",
+            "As people say,",
+            "Before anyone noticed,",
+            "In that place,",
+            "At the meeting,",
+            "On the way home,",
+            "During the trip,",
+            "While at work,",
+            "At school,",
+            "In the office,"
+        ],
+        "verb": [
+            "announced", "confessed", "admitted", "revealed", "declared", "mentioned", "acknowledged", "pretended", "said", "decided"
+        ],
+        "comp": [
+            "that", "why", "how", "when", "what"
+        ]
+    },
+    "subject_pron2": {
+        "templates": [
+            "[start] [name] is a [profession].",
+            "[start] [name] is [place]."
+        ],
+        "start": [ "Remember" ]
+    },
+    "object_pron": {
+        "templates": []
+    },
+    "reflexive_pron": {
+        "templates": []
+    }
+}

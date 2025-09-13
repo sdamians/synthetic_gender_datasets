@@ -2,3 +2,5 @@
 data/
 notebooks/gather_names.ipynb
 /data-file.bin
+/datasets/*
+!/datasets/*.dvc

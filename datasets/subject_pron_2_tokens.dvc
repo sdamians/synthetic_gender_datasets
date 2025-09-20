@@ -1,6 +1,6 @@
 outs:
-- md5: 5033cb406cd4984b8c654cd67036be9d.dir
-  size: 125003
+- md5: 242c6a8925b7fb808189010891d7c342.dir
+  size: 124923
   nfiles: 3
   hash: md5
   path: subject_pron_2_tokens

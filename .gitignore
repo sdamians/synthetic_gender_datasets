@@ -4,3 +4,6 @@ notebooks/gather_names.ipynb
 /data-file.bin
 /datasets/*
 !/datasets/*.dvc
+*.pyc
+src/utils/__pycache__/
+.vscode/

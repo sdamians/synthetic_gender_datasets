@@ -1,0 +1,6 @@
+outs:
+- md5: 4848d04c7a3f9a836e4c609d1b41e113.dir
+  size: 336358
+  nfiles: 3
+  hash: md5
+  path: subject_with_name_1_tokens_opt

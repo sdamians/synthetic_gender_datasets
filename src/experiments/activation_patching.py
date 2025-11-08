@@ -40,6 +40,7 @@ def get_act_patch_mlp_neurons(
     dataset: dict,
     clean_logit_diff: float,
     corrupted_logit_diff: float,
+    pos_by_layer: dict[int, list[int]],
     component: str = "mlp_post",
     neuron_step: int = 96
 ) -> Float[Tensor, "layer"]:
@@ -61,6 +62,7 @@ def get_act_patch_mlp_neurons(
               patch_mlp_neurons,
               neuron_indices=list(range(neuron_idx, neuron_idx + neuron_step)),
               clean_cache=clean_cache,
+              pos_by_layer=pos_by_layer
           )
 
           patched_logits = model.run_with_hooks(
@@ -108,6 +110,7 @@ def get_act_patch_mlp_by_neuron(
     clean_logit_diff: float,
     corrupted_logit_diff: float,
     layer: int,
+    pos_by_layer: dict[int, list[int]],
     neuron_idx_list: list = []
 ) -> Float[Tensor, "layer"]:
     """
@@ -123,6 +126,7 @@ def get_act_patch_mlp_by_neuron(
           patch_mlp_single_neuron,
           neuron_idx=neuron_idx,
           clean_cache=clean_cache,
+          pos_by_layer=pos_by_layer
       )
 
       patched_logits = model.run_with_hooks(
@@ -145,6 +149,7 @@ def get_most_important_neurons(neuron_blocks: list,
                                dataset: dict,
                                clean_logit_diff: float,
                                corrupted_logit_diff: float,
+                               pos_by_layer: dict[int, list[int]],
                                plot_heatmap: bool = True
                                ) -> dict:
     """
@@ -176,7 +181,8 @@ def get_most_important_neurons(neuron_blocks: list,
             clean_logit_diff=clean_logit_diff,
             corrupted_logit_diff=corrupted_logit_diff,
             layer=layer,
-            neuron_idx_list=neuron_idx_list
+            neuron_idx_list=neuron_idx_list,
+            pos_by_layer=pos_by_layer
         )
 
         mlp_single_activations = mlp_single_activations.unsqueeze(0).cpu().detach().numpy()

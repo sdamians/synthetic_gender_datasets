@@ -45,7 +45,7 @@ def activation_patching_metric(
     patched_logit_diff = from_logits_to_avg_logit_diff(logits, answer_tokens, last_token_pos)
     return (patched_logit_diff - corrupted_logit_diff) / (clean_logit_diff - corrupted_logit_diff)
 
-def path_patching_metric_f(
+def path_patching_metric(
     logits: Float[Tensor, "batch seq d_vocab"],
     answer_tokens: Float[Tensor, "batch 2"],
     corrupted_logit_diff: float,

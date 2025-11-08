@@ -10,8 +10,8 @@ import transformer_lens.utils as utils
 from functools import partial
 from tqdm import tqdm
 
-from path_patching.mlp_patching import patch_or_freeze_mlp_vectors
-from path_patching.head_patching import patch_or_freeze_head_vectors
+from mlp_patching import patch_or_freeze_mlp_vectors
+from head_patching import patch_or_freeze_head_vectors
 
 ################ Path patching implementation for attention heads and MLPs (component to component)
 

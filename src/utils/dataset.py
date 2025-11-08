@@ -48,3 +48,4 @@ def to_token_ids(model: HookedTransformer, name: str, prepend_bos=False) -> str:
     """
     tokens = model.to_tokens(f" {name}", prepend_bos=prepend_bos)[0].tolist()
     return ",".join([str(t) for t in tokens])
+

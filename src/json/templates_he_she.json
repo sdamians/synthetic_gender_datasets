@@ -2,7 +2,14 @@
     "templates":{
         "subject_with_name": {
             "prompt_templates": [
-                "[freq] [name] [verb] [comp] [end]" 
+                "[freq] [name] [verb] [comp] [end]",
+                "[freq] [name] ([comp]) [verb] [end]",
+                "[freq] [name] [verb] [end]" 
+            ]        
+        },
+        "subject_with_name_es": {
+            "prompt_templates": [
+                "[freq_es] [name] [verb_es] [comp_es] que" 
             ]        
         },
         "subject_role-based":{
@@ -12,7 +19,7 @@
         },
         "name_in_object":{
             "prompt_templates":[
-                "The nation heard that [name] had announced how"
+                "[group] heard that [name] had [verb] [that]"
             ]
         },
         "possessive":{
@@ -27,6 +34,34 @@
         }
     },
     "complements": {
+        "group": [
+            "The nation", 
+            "The country", 
+            "The community", 
+            "The team", 
+            "The organization", 
+            "The company", 
+            "The committee", 
+            "The assembly", 
+            "The crowd", 
+            "The public",
+            "The audience",
+            "The people",
+            "The citizens",
+            "The members",
+            "The masses",
+            "The world",
+            "The boss",
+            "The leader",
+            "The manager",
+            "The director",
+            "The supervisor",
+            "The president",
+            "The governor",
+            "The mayor",
+            "The teacher",
+            "The professor"
+        ],
         "freq": [
             "The other day",
             "As far as I know,",
@@ -108,7 +143,87 @@
             "with a sense of urgency"
         ],
         "end": [
-            "that", "why", "how", "when", "what"
+            "that", "that", "that", "why", "how", "when", "what"
+        ],
+        "freq_es": [
+            "El otro día",
+            "Hasta donde yo sé,",
+            "El momento en el que",
+            "Cuando",
+            "La última vez",
+            "Hoy más temprano,",
+            "No hace mucho,",
+            "Hace unos días,",
+            "En ese entonces,",
+            "Desde ese día en adelante,",
+            "En el pasado,",
+            "En ese momento,",
+            "Por lo que recuerdo,",
+            "Si no me equivoco,",
+            "Según recuerdo,",
+            "Por lo que he oído,",
+            "Como dice la gente,",
+            "Antes de que alguien se diera cuenta,",
+            "En ese lugar,",
+            "En la reunión,",
+            "De camino a casa,",
+            "Durante el viaje,",
+            "Mientras estaba en el trabajo,",
+            "En la escuela,",
+            "En la oficina,",
+            "Durante el evento,",
+            "En la fiesta,",
+            "Habiendo llegado allí,",
+            "Teniendo un propósito claro,",
+            "Sin conocer los detalles,",
+            "En un momento de claridad,",
+            "En una realización repentina,",
+            "En un destello de perspicacia,",
+            "En una explosión de inspiración,",
+            "En un momento de verdad,"
+        ],
+        "comp_es": [
+            "a la audiencia",
+            "a la multitud",
+            "a la gente",
+            "al público",
+            "a las masas",
+            "al mundo",
+            "a la nación",
+            "a los miembros",
+            "a la asamblea",
+            "al comité",
+            "al grupo",
+            "al equipo",
+            "a los ciudadanos",
+            "en voz baja",
+            "en voz alta",
+            "en voz temblorosa",
+            "en voz firme",
+            "en voz temblorosa",
+            "en voz clara",
+            "en voz suave",
+            "en voz enojada",
+            "en voz alegre",
+            "en voz triste",
+            "en voz seria",
+            "en voz juguetona",
+            "en voz dudosa",
+            "en voz confiada",
+            "en voz nerviosa",
+            "a pesar del ruido",
+            "en medio del caos",
+            "con gran entusiasmo",
+            "con el corazón pesado",
+            "con una sonrisa",
+            "con determinación",
+            "con emoción",
+            "con confianza",
+            "con duda",
+            "con un sentido de urgencia"
+        ],
+        "verb_es": [
+            "confirmó", "anunció", "confesó", "admitió", "reveló", "declaró", "mencionó", "reconoció", "dijo", "decidió"
         ]
     },
     "token_answers" : {"M": " he", "F":" she"} 

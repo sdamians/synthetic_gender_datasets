@@ -1,5 +1,16 @@
 {
-    "verbs": [],
-    "freq": [],
-    "professions": []
+    "professions": [
+        "nurse", "maid", "cook", "host", "clerk", "dancer", "singer", 
+        "author", "actress", "poet", "judge", "cleric", "empress", 
+        "princess", "queen", "goddess", "witch", "nun", "muse", 
+        "model", "heiress", "stewardess", "seamstress", "sorceress", 
+        "waitress", "duchess", "baroness", "majorette", "valkyrie", "geisha",
+        "priestess", "secretary", "ballerina", "vocalist", "dancer", "nanny",
+        "violinist", "housekeeper", "midwife", "hostess",
+        "king", "prince", "duke", "lord", "baron", "judge", "author", 
+        "poet", "cook", "clerk", "host", "maid", "actor", "singer", 
+        "dancer", "doctor", "pilot", "captain", "agent", "driver", 
+        "waiter", "writer", "painter", "farmer", "priest", "monk", 
+        "knight", "wizard", "sorcerer", "hero", "soldier", "butler"             
+    ]
 }

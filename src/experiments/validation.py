@@ -110,7 +110,7 @@ def compute_means_by_template(
 
 def add_mean_ablation_hook(
     model: HookedTransformer,
-    prompt_type_indices: List[Tensor, "idx"], # type: ignore
+    prompt_type_indices: Float[Tensor, "idx"],
     tokens: Float[Tensor, "batch seq"],
     dataset_len: int,
     max_len: int,

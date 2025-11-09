@@ -74,7 +74,7 @@ def hook_fn_mask_z(
 
 
 def compute_means_by_template(
-    prompt_type_indices: List[Tensor, "idx"], # type: ignore
+    prompt_type_indices: Float[Tensor, "idx"], # type: ignore
     tokens: Float[Tensor, "batch seq"],
     dataset_len: int,
     max_len: int,
@@ -131,7 +131,7 @@ def add_mean_ablation_hook(
       model.reset_hooks(including_permanent=True)
 
     # Compute the mean of each head's output on the ABC dataset, grouped by template
-    means = compute_means_by_template(prompt_type_indices, tokens, dataset_len, max_len, model)
+    means = compute_means_by_template(prompt_type_indices, tokens, dataset_len, max_len, model) # type: ignore
 
     # Convert this into a boolean map
     heads_and_posns_to_keep = get_heads_and_posns_to_keep(dataset_len, max_len, model, circuit, seq_pos_to_keep, inverse_circuit) # type: ignore
@@ -211,7 +211,7 @@ def hook_fn_mask_mlp_post(
 
 
 def compute_means_by_template_for_mlp(
-    prompt_type_indices: List[Tensor, "idx"], # type: ignore
+    prompt_type_indices: Float[Tensor, "idx"], # type: ignore
     tokens: Float[Tensor, "batch seq"],
     dataset_len: int,
     max_len: int,
@@ -268,7 +268,7 @@ def add_mean_ablation_hook_for_mlp(
       model.reset_hooks(including_permanent=True)
 
     # Compute the mean of each head's output on the ABC dataset, grouped by template
-    means = compute_means_by_template_for_mlp(prompt_type_indices, tokens, dataset_len, max_len, model)
+    means = compute_means_by_template_for_mlp(prompt_type_indices, tokens, dataset_len, max_len, model) # type: ignore
 
     # Convert this into a boolean map
     neurons_and_posns_to_keep = get_neurons_and_posns_to_keep(dataset_len, max_len, model, circuit, seq_pos_to_keep, inverse_circuit) # type: ignore

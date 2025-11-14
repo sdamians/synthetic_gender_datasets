@@ -150,7 +150,8 @@ def get_most_important_neurons(neuron_blocks: list,
                                clean_logit_diff: float,
                                corrupted_logit_diff: float,
                                pos_by_layer: dict[int, list[int]],
-                               plot_heatmap: bool = True
+                               plot_heatmap: bool = True,
+                               neuron_step: int = 96
                                ) -> dict:
     """
     Identifies and returns the most important neurons in specified MLP blocks of a transformer model using activation patching.
@@ -170,7 +171,7 @@ def get_most_important_neurons(neuron_blocks: list,
     results = {}
 
     for layer, block in neuron_blocks:
-        neuron_idx_list = [nidx for nidx in range( (3072 // 32) * block, (3072 // 32) * (block + 1) )]
+        neuron_idx_list = [nidx for nidx in range(block * neuron_step, (block + 1) * neuron_step)]
 
         mlp_single_activations = get_act_patch_mlp_by_neuron(
             model=model,

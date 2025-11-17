@@ -68,3 +68,4 @@ def calculate_entropy(val_components: Float[Tensor, "seq"]):
   entropy_max = t.log(t.tensor(len(val_components))).item()
   entropy = -t.sum(val_components * t.log(val_components + 1e-12)).item()
   return np.round(entropy / entropy_max, 6)
+

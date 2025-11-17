@@ -1,6 +1,8 @@
 import torch as t
 from datasets import Dataset
 from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Union
+from datasets import concatenate_datasets
 
 ans_tokens_dict: Dict[str, int] = {" she": 673, " he": 339}
 ans_token_id_dict: Dict[int, str] = {673: " she", 339: " he"}
@@ -131,4 +133,57 @@ def get_dataset(
     "last_token_pos": t.tensor(get_nested_feature_values(subset, ["end", "pos"])).to(device),
     "subject_pos": t.tensor(get_nested_feature_values(subset, ["subject", "pos"])).squeeze().to(device),
     "verb_pos": t.tensor(subset["verb_token_pos"]).squeeze().to(device),
+  }
+
+def get_stratified_dataset(
+  subset: Dataset,
+  device: Union[t.device, str],
+  gender_study: Optional[str] = None,
+  prompt_type_list: Optional[List[int]] = None,
+  how_many: int = 2,
+) -> Dict[str, Any]:
+  """
+  Prepare and return tensors and prompt/answer lists extracted from a Dataset.
+
+  Parameters:
+  - subset (Dataset): The dataset to extract from.
+  - device (torch.device | str): Device to move tensors to.
+  - gender_study (Optional[str]): If provided, filter by this gender ('female'/'male').
+  - prompt_type_list (Optional[List[int]]): If provided, keep only rows whose prompt_type is in this list.
+    If None, defaults to [1].
+  - data_prop (Optional[float]): If provided, perform a train_test_split and keep the 'test' subset
+    of size data_prop (stratified by prompt_type).
+
+  Returns:
+  - Dict[str, Any]: A mapping with prompts, answers, token positions and tensors moved to device.
+  """
+  if prompt_type_list is None:
+    prompt_type_list = [1]
+  
+  subset = subset.filter(lambda x: x["prompt_type"] in prompt_type_list)
+
+  if gender_study is not None:
+    subset = subset.filter(lambda x: x["gender"] == gender_study)
+
+  res_subset = None
+  for prompt_type in prompt_type_list:
+    aux_subset = subset.filter(lambda x: x["prompt_type"] == prompt_type)
+    aux_subset = aux_subset.shuffle(seed=42).select(range(how_many))
+    if res_subset is None:
+      res_subset = aux_subset    
+    else:
+      res_subset = concatenate_datasets([res_subset, aux_subset])
+
+  assert res_subset is not None, "No examples selected for the given prompt_type_list/filters; res_subset is None"
+
+  return {
+    "prompts": get_nested_feature_values(res_subset, ["prompts", "org_prompt"]),
+    "c_prompts": get_nested_feature_values(res_subset, ["prompts", "corr_prompt"]),
+    "a_prompts": get_nested_feature_values(res_subset, ["prompts", "ablated_prompt"]),
+    "answers": get_nested_feature_values(res_subset, ["ans_tokens"]),
+    "prompt_type": get_nested_feature_values(res_subset, ["prompt_type"]),
+    "answer_ids": t.tensor(res_subset["ans_token_ids"]).to(device),
+    "last_token_pos": t.tensor(get_nested_feature_values(res_subset, ["end", "pos"])).to(device),
+    "subject_pos": t.tensor(get_nested_feature_values(res_subset, ["subject", "pos"])).squeeze().to(device),
+    "verb_pos": t.tensor(res_subset["verb_token_pos"]).squeeze().to(device),
   }

@@ -43,7 +43,6 @@ def patch_mlp_input(
     orig_activation[:, :, neurons_to_patch] = patched_cache[hook.name][:, :, neurons_to_patch]
     return orig_activation
 
-# Solo se puede preguntar de neuronas que se encuentren en la misma capa
 def get_path_patch_component_to_component(
     from_component: str,
     to_component: str,
